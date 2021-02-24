@@ -1,7 +1,7 @@
 import javax.swing.*;
 
-public class MainScreen extends Screen {
-  public MainScreen() {
+public class MenuScreen extends Screen {
+  public MenuScreen() {
     super(new JFrame());
   }
 
@@ -25,5 +25,6 @@ public class MainScreen extends Screen {
   f.setLayout(null);//using no layout managers  
   f.setResizable(false);
     f.setVisible(true);//making the frame visible
+    addHelp();
   }
 }

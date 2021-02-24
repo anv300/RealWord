@@ -1,7 +1,7 @@
 import javax.swing.*;
 
 public class Main {
-  public static Screen screen = new MainScreen();
+  public static Screen screen = new MenuScreen();
 
   public static void setScreen(Screen screen1) {
     screen.clear();

@@ -12,4 +12,20 @@ public abstract class Screen {
   public void clear() {
     frame.setVisible(false);
   }
+
+  public String getHelpText() {
+    return "Click here for help";
+  }
+  
+  public String getHelpLink() {
+    return "https://github.com/anv300/RealWord/wiki";
+  }
+
+  public LabelLink getHelp() {
+    return new LabelLink(getHelpText(), getHelpLink());
+  }
+
+  protected void addHelp() {
+    frame.add(getHelp());
+  }
 }
