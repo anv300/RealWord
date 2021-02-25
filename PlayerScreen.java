@@ -66,8 +66,22 @@ public void actionPerformed(ActionEvent e){
     }); 
     f.add(deletePlayer);
 
+    JTextField addPlayer = new JTextField();
+    addPlayer.addActionListener(
+    ae -> {
+      if(!addPlayer.getText().equals("")) {
+((DefaultListModel) playlistB.getModel()).addElement(addPlayer.getText());
+        players.add(addPlayer.getText());
+        addPlayer.setText("");
+      }
+
+    }
+    );
+    addPlayer.setBounds(125, 200, 200, 20);
+    f.add(addPlayer);
+
     addBackButton();
-    addHelp();
+    // addHelp();
     finishDraw();
   }
 
