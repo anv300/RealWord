@@ -5,6 +5,7 @@ public class Main {
 
   public static void setScreen(Screen screen1) {
     screen.clear();
+    screen = screen1;
     screen1.draw();
   }
 

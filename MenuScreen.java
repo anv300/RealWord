@@ -1,8 +1,9 @@
 import javax.swing.*;
+import java.awt.event.*;
 
 public class MenuScreen extends Screen {
   public MenuScreen() {
-    super(new JFrame());
+    super(new JFrame(), null);
   }
 
   public void draw() {
@@ -12,19 +13,24 @@ public class MenuScreen extends Screen {
 // b.setBounds(130,100,100, 40);//x axis, y axis, width, height  
           
     // f.add(b);//adding button in JFrame  
+
+    Screen this1 = this;
           
     JLabel title = new JLabel("RealWord");
     title.setBounds(150, 0, 100, 50);
     f.add(title);
 
     JButton start = new JButton("Start");
-    start.setBounds(150, 200, 70, 20);
+    start.setBounds(150, 150, 70, 20);
     f.add(start);
 
-    f.setSize(400,500);//400 width and 500 height  
-  f.setLayout(null);//using no layout managers  
-  f.setResizable(false);
-    f.setVisible(true);//making the frame visible
+     start.addActionListener(new ActionListener(){  
+public void actionPerformed(ActionEvent e){  
+            Main.setScreen(new PlayerScreen(this1));  
+        }  
+    });  
+
     addHelp();
+    finishDraw();
   }
 }
