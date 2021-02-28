@@ -9,7 +9,7 @@ public class PlayerScreen extends Screen {
   
   public PlayerScreen(Screen prevScreen) {
     super(new JFrame("RealWord - Add players"), prevScreen);
-      addTestPlayers();
+//      addTestPlayers();
 
   }
 
@@ -73,7 +73,10 @@ public class PlayerScreen extends Screen {
 
     JButton continu = new JButton("Continue");
         continu.setBounds(10, 200, 100, 20);
-    continu.addActionListener(e -> Main.setScreen(new WordChooseScreen(players, this)));
+    continu.addActionListener(e -> {
+        if(players.size() < 2) return;
+        Main.setScreen(new WordChooseScreen(players, this));
+    });
     f.add(continu);
 
     JTextField addPlayer = new JTextField();
