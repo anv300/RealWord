@@ -17,7 +17,14 @@ public class GameScreen extends Screen{
     public final List<String> plrs;
 
     public String nextTurn() {
-        String toR = plrs.get(plrs.indexOf(currentTurn) + 1);
+        String toR;
+        System.out.println(plrs.indexOf(currentTurn));
+        System.out.println(plrs.size());
+        if(plrs.indexOf(currentTurn) + 1 >= plrs.size()) {
+            toR = plrs.get(0);
+        } else {
+            toR = plrs.get(plrs.indexOf(currentTurn) + 1);
+        }
         currentTurn = toR;
         turnL.setText("Current turn: " + currentTurn);
         return toR;
