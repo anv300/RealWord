@@ -27,7 +27,7 @@ public class LabelLink extends JLabel {
     public void mouseClicked(MouseEvent e) {
         try {
          
-        Desktop.getDesktop().browse(new URI("http://www.codejava.net"));
+        Desktop.getDesktop().browse(new URI(link));
          
     } catch (IOException | URISyntaxException e1) {
         e1.printStackTrace();

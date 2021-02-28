@@ -11,7 +11,7 @@ public abstract class Screen {
   }
 
   protected void finishDraw() {
-    frame.setSize(400,500);//400 width and 500 height  
+    frame.setSize(400,300);
   frame.setLayout(null);//using no layout managers  
   frame.setResizable(false);
     frame.setVisible(true);//making the frame visible
@@ -20,6 +20,7 @@ public abstract class Screen {
   public abstract void draw();
 
   public void clear() {
+//    frame.removeAll();
     frame.setVisible(false);
   }
 
@@ -41,8 +42,12 @@ public abstract class Screen {
     frame.add(getHelp());
   }
 
+  public String getBackText() {
+    return "Back";
+  }
+
   public JButton getBackButton() {
-    JButton back = new JButton("Back");
+    JButton back = new JButton(getBackText());
     back.setBounds(0, 0, 70, 20);
      back.addActionListener(new ActionListener(){  
 public void actionPerformed(ActionEvent e){  

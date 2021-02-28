@@ -8,13 +8,19 @@ public class PlayerScreen extends Screen {
   public List<String> players = new ArrayList<>();
   
   public PlayerScreen(Screen prevScreen) {
-    super(new JFrame(), prevScreen);
+    super(new JFrame("RealWord - Add players"), prevScreen);
+      addTestPlayers();
+
   }
 
   JList playlistB;
+  JScrollPane p;
 
   protected JList drawPlayerList() {
-    if(playlistB != null) playlistB.setVisible(false);
+    if(p != null) {
+        p.setVisible(false);
+        frame.remove(p);
+    };
     DefaultListModel dlm = new DefaultListModel();
     for(String player : players) {
       dlm.addElement(player);
@@ -37,6 +43,7 @@ public class PlayerScreen extends Screen {
     scrollPane.setBounds(30,80,240,100);
     frame.add(scrollPane);
     playlistB = playersList;
+    p = scrollPane;
     return playersList;
   }
 
@@ -47,24 +54,27 @@ public class PlayerScreen extends Screen {
     title.setBounds(150, 0, 200, 50);
     f.add(title);
 
-    addTestPlayers();
     drawPlayerList();
 
     JButton deletePlayer = new JButton("Delete");
     deletePlayer.setBounds(280,90, 100, 80);
-    deletePlayer.addActionListener(new ActionListener(){  
-public void actionPerformed(ActionEvent e){  
-            // if(list1.getSelectedIndex() != -1) {                       
-            //         data = "Programming language Selected: " + list1.getSelectedValue();   
-            //         label.setText(data);  
-            //      }   
-            if(playlistB.getSelectedIndex() != -1) {
-              ((DefaultListModel) playlistB.getModel()).remove(playlistB.getSelectedIndex());
-              players.remove(playlistB.getSelectedValue());
-            } 
-        }  
-    }); 
+    deletePlayer.addActionListener(e -> {
+                // if(list1.getSelectedIndex() != -1) {
+                //         data = "Programming language Selected: " + list1.getSelectedValue();
+                //         label.setText(data);
+                //      }
+                if(playlistB.getSelectedIndex() != -1) {
+                  ((DefaultListModel) playlistB.getModel()).remove(playlistB.getSelectedIndex());
+                  players.remove(playlistB.getSelectedValue());
+                }
+            });
+
     f.add(deletePlayer);
+
+    JButton continu = new JButton("Continue");
+        continu.setBounds(10, 200, 100, 20);
+    continu.addActionListener(e -> Main.setScreen(new WordChooseScreen(players, this)));
+    f.add(continu);
 
     JTextField addPlayer = new JTextField();
     addPlayer.addActionListener(
@@ -81,7 +91,7 @@ public void actionPerformed(ActionEvent e){
     f.add(addPlayer);
 
     addBackButton();
-    // addHelp();
+//     addHelp();
     finishDraw();
   }
 

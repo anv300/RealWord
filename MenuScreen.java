@@ -3,11 +3,11 @@ import java.awt.event.*;
 
 public class MenuScreen extends Screen {
   public MenuScreen() {
-    super(new JFrame(), null);
+    super(new JFrame("RealWord - Main menu"), null);
   }
 
   public void draw() {
-    JFrame f = frame;  
+    JFrame f = frame;
           
     // JButton b=new JButton("click");
 // b.setBounds(130,100,100, 40);//x axis, y axis, width, height  
