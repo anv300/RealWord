@@ -12,14 +12,16 @@ public class WinScreen extends Screen {
     private final String def;
     private final List<String> defs;
     private final String turn;
+    private final String chosenPlr;
 
-    public WinScreen(List<String> players, String word, String def, List<String> defs, String turn) {
+    public WinScreen(List<String> players, String word, String def, List<String> defs, String chosenPlr, String turn) {
         super(new JFrame("RealWord - yay you win"), new MenuScreen());
         this.players = players;
         this.word = word;
         this.def = def;
         this.defs = defs;
         this.turn = turn;
+        this.chosenPlr = chosenPlr;
     }
 
     @Override
@@ -46,7 +48,7 @@ public class WinScreen extends Screen {
         JButton r = new JButton("rel");
         r.setBounds(100, 100, 50, 50);
         r.addActionListener((e -> {
-            Main.setScreen(new WinScreen(players, word, def, defs, turn));
+            Main.setScreen(new WinScreen(players, word, def, defs, chosenPlr, turn));
         }));
         if(rel) {
             f.add(r);
@@ -67,6 +69,7 @@ public class WinScreen extends Screen {
         addInfo.accept("Word", word);
         addInfo.accept("Definition", def);
         addInfo.accept("Guessed by", turn);
+        addInfo.accept("Word by", chosenPlr);
 
         addBackButton();
         finishDraw();

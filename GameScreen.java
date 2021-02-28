@@ -2,6 +2,7 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameScreen extends Screen{
@@ -10,23 +11,29 @@ public class GameScreen extends Screen{
     public final String word;
     public final String def;
     public final List<String> defs;
+    private final String chosenPlr;
     public String currentTurn;
     public final JLabel turnL;
+    public final List<String> plrs;
 
     public String nextTurn() {
-        String toR = players.get(players.indexOf(currentTurn) + 1);
+        String toR = plrs.get(plrs.indexOf(currentTurn) + 1);
         currentTurn = toR;
         turnL.setText("Current turn: " + currentTurn);
         return toR;
     }
 
-    public GameScreen(List<String> players, String word, String def, List<String> defs, Screen prevScreen) {
+    public GameScreen(List<String> players, String word, String def, List<String> defs, String chosenPlr, Screen prevScreen) {
         super(new JFrame("RealWord"), prevScreen);
         this.players = players;
         this.word = word;
         this.def = def;
         this.defs = defs;
-        currentTurn = players.get(0);
+        this.chosenPlr = chosenPlr;
+        plrs = new ArrayList<>();
+        plrs.addAll(players);
+        plrs.remove(chosenPlr);
+        currentTurn = plrs.get(0);
         turnL = new JLabel("Current turn: " + currentTurn);
     }
 
@@ -57,7 +64,7 @@ public class GameScreen extends Screen{
     protected void guessDef() {
         if(listB.getSelectedValue().equals(def)) {
             System.out.println("Guessed right!");
-            Main.setScreen(new WinScreen(players, word, def, defs, currentTurn));
+            Main.setScreen(new WinScreen(players, word, def, defs, chosenPlr, currentTurn));
         } else {
             System.out.println("Guessed wrong!");
             nextTurn();

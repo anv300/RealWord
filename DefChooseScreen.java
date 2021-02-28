@@ -8,10 +8,12 @@ public class DefChooseScreen extends Screen {
     public final List<String> defs;
     public final List<String> players;
     public final String word;
+    private final String chosenPlr;
     public String rightDef;
 
-    public DefChooseScreen(List<String> players, String word, Screen prevScreen) {
+    public DefChooseScreen(List<String> players, String word, String chosenPlr, Screen prevScreen) {
         super(new JFrame("RealWord - Add definitions"), prevScreen);
+        this.chosenPlr = chosenPlr;
         this.players = players;
         this.word = word;
         this.defs = new ArrayList<>();
@@ -53,8 +55,8 @@ public class DefChooseScreen extends Screen {
             rightDef = r;
         };
 
-        JLabel title = new JLabel("Add definitions");
-        title.setBounds(150, 0, 100, 50);
+        JLabel title = new JLabel("Add definitions, " + chosenPlr);
+        title.setBounds(100, 0, 400, 50);
         f.add(title);
 
         JLabel wo = new JLabel("Chosen word: " + word);
@@ -111,7 +113,7 @@ public class DefChooseScreen extends Screen {
         continu.setBounds(10, 200, 100, 20);
         continu.addActionListener(e -> {
             if(rightDef.equals("None")) return;
-            Main.setScreen(new GameScreen(players, word, rightDef, defs, this));
+            Main.setScreen(new GameScreen(players, word, rightDef, defs, chosenPlr, this));
         });
         f.add(continu);
 
